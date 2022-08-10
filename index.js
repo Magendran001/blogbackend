@@ -1,6 +1,7 @@
 const express = require("express");
 const connect = require("./config/db");
 const app = express();
+require("dotenv").config();
 const usercontroller = require("./controller/usercontroller");
 const blogcontroller = require("./controller/blogcontroller");
 const Admincontroller = require("./controller/admincontroller")
@@ -12,7 +13,7 @@ app.use(express.json())
 app.use("", usercontroller)
 app.use("/blog", blogcontroller)
 app.use("/admin", Admincontroller)
-app.listen(4329, async (req, res, next) => {
+app.listen(process.env.PORT || 4329, async (req, res, next) => {
     try {
         await connect
         console.log("listening on port 4329")
